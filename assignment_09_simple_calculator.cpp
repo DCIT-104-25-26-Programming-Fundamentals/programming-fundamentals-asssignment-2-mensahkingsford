@@ -65,7 +65,115 @@
 //
 
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
+// #include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+double add(double a, double b) {
+    return a + b;
+}
+
+double subtract(double a, double b) {
+    return a - b;
+}
+
+double multiply(double a, double b) {
+    return a * b;
+}
+
+bool divide(double a, double b, double& result) {
+    if (b == 0) {
+        return false;
+    }
+    result = a / b;
+    return true;
+}
+
+double modulus(double a, double b) {
+    return fmod(a, b);
+}
+
+double exponentiate(double a, double b) {
+    return pow(a, b);
+}
+
+void displayMenu() {
+    cout << "============================" << endl;
+    cout << "     SIMPLE CALCULATOR" << endl;
+    cout << "============================" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Modulus" << endl;
+    cout << "6. Exponentiation" << endl;
+    cout << "7. Quit" << endl;
+}
+
+void getTwoNumbers(double& a, double& b) {
+    cout << "Enter first number : ";
+    cin >> a;
+    cout << "Enter second number: ";
+    cin >> b;
+}
+
+int main() {
+    cout << fixed << setprecision(2);
+
+    while (true) {
+        displayMenu();
+        int choice;
+        cout << "Select an operation (1-7): ";
+        cin >> choice;
+
+        if (choice == 7) {
+            cout << "Goodbye!" << endl;
+            break;
+        }
+
+        if (choice < 1 || choice > 6) {
+            cout << "Error: Invalid choice. Please enter a number from 1 to 7." << endl;
+            cout << endl;
+            continue;
+        }
+
+        double a, b;
+        getTwoNumbers(a, b);
+
+        double result;
+        char symbol;
+
+        if (choice == 1) {
+            result = add(a, b);
+            symbol = '+';
+        } else if (choice == 2) {
+            result = subtract(a, b);
+            symbol = '-';
+        } else if (choice == 3) {
+            result = multiply(a, b);
+            symbol = '*';
+        } else if (choice == 4) {
+            symbol = '/';
+            if (!divide(a, b, result)) {
+                cout << "Error: Cannot divide by zero." << endl;
+                cout << endl;
+                continue;
+            }
+        } else if (choice == 5) {
+            result = modulus(a, b);
+            symbol = '%';
+        } else if (choice == 6) {
+            result = exponentiate(a, b);
+            symbol = '^';
+        }
+
+        cout << "Result: " << a << " " << symbol << " " << b << " = " << result << endl;
+        cout << endl;
+    }
+
+    return 0;
+}
 // =============================================================================
 
 #include <iostream>

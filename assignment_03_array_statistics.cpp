@@ -36,7 +36,72 @@
 
 //
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
+// #include <iostream>
+using namespace std;
+
+double calculateSum(double arr[], int n) {
+    double total = 0;
+    for (int i = 0; i < n; i++) {
+        total += arr[i];
+    }
+    return total;
+}
+
+double calculateAverage(double arr[], int n) {
+    double total = calculateSum(arr, n);
+    return total / n;
+}
+
+double calculateMax(double arr[], int n) {
+    double largest = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > largest) {
+            largest = arr[i];
+        }
+    }
+    return largest;
+}
+
+double calculateMin(double arr[], int n) {
+    double smallest = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < smallest) {
+            smallest = arr[i];
+        }
+    }
+    return smallest;
+}
+
+int main() {
+    int n;
+    cout << "How many numbers? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: N must be a positive integer." << endl;
+        return 0;
+    }
+
+    double* numbers = new double[n];
+    for (int i = 0; i < n; i++) {
+        cout << "Enter number " << (i + 1) << ": ";
+        cin >> numbers[i];
+    }
+
+    double total = calculateSum(numbers, n);
+    double average = calculateAverage(numbers, n);
+    double maximum = calculateMax(numbers, n);
+    double minimum = calculateMin(numbers, n);
+
+    cout << "\nResults:" << endl;
+    cout << "Sum:     " << total << endl;
+    cout << "Average: " << average << endl;
+    cout << "Maximum: " << maximum << endl;
+    cout << "Minimum: " << minimum << endl;
+
+    delete[] numbers;
+    return 0;
+}
 // =============================================================================
 
 #include <iostream>
